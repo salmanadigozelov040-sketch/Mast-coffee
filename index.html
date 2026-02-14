@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mast Coffee Baku</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- GOOGLE FONTS FÜR BODONI --- */
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&display=swap');
+
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: #111;
+            line-height: 1.6;
+            background-color: #f2e8cf; /* DAHA TÜND KREM / BEJ */
+            padding-top: 80px; /* Space for fixed header */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- FADE IN ANIMATION CLASSES --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: #f2e8cf; /* HEADER ÜÇÜN TÜND KREM */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 1px solid #d9ccb0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-logo-img img {
+            height: 60px; 
+            width: auto;
+        }
+
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Bodoni Şrifti tətbiqi */
+        .header-title span.brand-name {
+            font-family: 'Libre Bodoni', 'Bodoni MT', 'Bodoni', serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .header-title span.brand-location {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #666;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 20px;
+            width: 30px;
+            z-index: 1001;
+        }
+        
+        .bar {
+            height: 3px;
+            width: 100%;
+            background-color: #000;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
+
+        /* --- OVERLAY MENU --- */
+        .overlay {
+            height: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 999;
+            top: 80px;
+            left: 0;
+            background-color: #000;
+            overflow-y: hidden;
+            transition: 0.5s;
+        }
+
+        .overlay-content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .overlay a {
+            padding: 20px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .overlay a i {
+            margin-right: 20px;
+            width: 25px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        /* --- HERO IMAGE --- */
+        .hero-container {
+            width: 100%;
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        .hero-container img {
+            width: 100%;
+            height: auto; 
+            display: block;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        /* --- OUR COFFEE SEKSİYASI --- */
+        .our-coffee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* YENİ ŞÜAR STİLİ */
+        .caffeinated-slogan {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 300; 
+            font-style: italic;
+            color: #333;
+            text-align: center;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        .our-coffee-img {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .our-coffee-img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: zoomLoop 12s infinite; 
+        }
+
+        .our-coffee-img img:nth-child(1) { animation-delay: 0s; }
+        .our-coffee-img img:nth-child(2) { animation-delay: 4s; }
+        .our-coffee-img img:nth-child(3) { animation-delay: 8s; }
+
+        @keyframes zoomLoop {
+            0% { opacity: 0; transform: scale(1); }
+            2% { opacity: 1; }
+            8.33% { opacity: 1; transform: scale(1.04); }
+            25% { opacity: 1; transform: scale(1.06); }
+            33.33% { opacity: 1; transform: scale(1.12); }
+            38.33% { opacity: 0; transform: scale(1.12); }
+            100% { opacity: 0; transform: scale(1); }
+        }
+
+        /* --- MENU SECTION --- */
+        #menu-section {
+            background-color: #111;
+            color: #fff;
+            max-width: 100%;
+            padding: 100px 20px;
+        }
+
+        #menu-section h2 {
+            color: #fff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .menu-category {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+        }
+
+        .menu-category h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list li {
+            font-size: 16px;
+            color: #bbb;
+            border-bottom: 1px solid #222;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s;
+        }
+        
+        .menu-list li:hover { color: #fff; }
+
+        /* --- LOCATIONS & TIMES --- */
+        #locations {
+            text-align: center;
+            background-color: transparent; 
+            max-width: 100%;
+        }
+
+        .locations-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+
+        .info-box h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #111;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .info-line {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .info-label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f2e8cf; /* FOOTER TÜND KREM */
+            border-top: 1px solid #d9ccb0;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social-link {
+            display: inline-block;
+            color: #111;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-social-link:hover { color: #E1306C; transform: scale(1.1); }
+
+        .footer-copy { font-size: 13px; color: #999; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .our-coffee-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 28px; }
+            section { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="header-logo-img">
+            <img src="https://i.ibb.co/YTPvrrg8/quality-restoration-20260214015716876.jpg" alt="Mast Coffee Logo">
+        </a>
+        <div class="header-title">
+            <span class="brand-name">MAST</span>
+            <span class="brand-name">COFFEE</span>
+            <span class="brand-location">Baku</span>
+        </div>
+        <div class="menu-icon" onclick="toggleNav()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <div id="myNav" class="overlay">
+        <div class="overlay-content">
+            <a href="#menu-section" onclick="closeNav()"><i class="fas fa-book-open"></i> Menu</a>
+            <a href="#our-coffee" onclick="closeNav()"><i class="fas fa-mug-hot"></i> Our Coffee</a>
+            <a href="#locations" onclick="closeNav()"><i class="fas fa-map-marker-alt"></i> Locations & Times</a>
+        </div>
+    </div>
+
+    <div class="hero-container fade-in-section">
+        <img src="https://i.ibb.co/HLVSH2Hy/ai-repair-20260214030818905.jpg" alt="Mast Coffee Storefront">
+    </div>
+
+    <section id="our-coffee" class="fade-in-section">
+        <div class="our-coffee-grid">
+            <div class="our-coffee-text">
+                <p class="caffeinated-slogan">Keeping Baku caffeinated since 2017!</p>
+                
+                <h2>Our Coffee</h2>
+                <p>At Mast Coffee, we pride ourselves on sourcing only the finest beans from ethical and sustainable roasters. Our blends are carefully crafted from farms in regions renowned for their unique flavors.</p>
+                <p>We partner with roasters who prioritize quality and sustainability, ensuring that each cup not only tastes incredible but also supports local communities.</p>
+                <br>
+                <p><strong>Featuring:</strong> De Mello Coffee & 49th Parallel</p>
+            </div>
+            
+            <div class="our-coffee-img">
+                <img src="https://i.ibb.co/VWfSCw4r/expansion-20260214051931062.jpg" alt="Coffee Slide 1">
+                <img src="https://i.ibb.co/4wY2RjwW/In-Shot-20260214-043153555.jpg" alt="Coffee Slide 2">
+                <img src="https://i.ibb.co/3m80jgzK/expansion-20260214033609772.jpg" alt="Coffee Slide 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu-section" class="fade-in-section">
+        <h2>Menu</h2>
+
+        <div class="menu-category">
+            <h3>Espresso</h3>
+            <ul class="menu-list">
+                <li>Drip Coffee</li>
+                <li>Double Espresso</li>
+                <li>Americano</li>
+                <li>Iced Americano</li>
+                <li>Macchiato</li>
+                <li>Cortado</li>
+                <li>Cappuccino</li>
+                <li>Latte</li>
+                <li>Iced Latte</li>
+                <li>Misto</li>
+                <li>Mocha</li>
+                <li>Iced Mocha</li>
+                <li>White Chocolate Macadamia</li>
+                <li>Iced White Chocolate Macadamia</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h3>Non-Espresso</h3>
+            <ul class="menu-list">
+                <li>Tea (Selection)</li>
+                <li>Chai Latte</li>
+                <li>Iced Chai Latte</li>
+                <li>Matcha Latte</li>
+                <li>Iced Matcha Latte</li>
+                <li>London Fog</li>
+                <li>Iced London Fog</li>
+                <li>Hot Chocolate (Dark or White)</li>
+                <li>Hot Apple Cider (Seasonal)</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h3>Bakery</h3>
+            <ul class="menu-list">
+                <li>Butter Croissant</li>
+                <li>Almond Croissant</li>
+                <li>Seasonal Croissant</li>
+                <li>Blueberry Muffin</li>
+                <li>Vegan Banana Muffin</li>
+                <li>Vegan Pumpkin Loaf</li>
+                <li>Cranberry Scone</li>
+                <li>White Cheddar Scone</li>
+                <li>Blueberry Scone</li>
+                <li>Flourless Brownie</li>
+                <li>Carrot Cake</li>
+                <li>Nanaimo Bar</li>
+                <li>Sea Salt Chocolate Cookie</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h3>Breakfast</h3>
+            <ul class="menu-list">
+                <li>Steel Cut Oats</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="locations" class="fade-in-section">
+        <h2>Locations & Times</h2>
+        <div class="locations-container">
+            <div class="info-box">
+                <h3>Cafe Hours</h3>
+                <div class="info-line"><span class="info-label">Weekdays</span>7:00 AM – 6:00 PM</div>
+                <div class="info-line"><span class="info-label">Weekends</span>8:00 AM – 6:00 PM</div>
+            </div>
+            <div class="info-box">
+                <h3>Locations</h3>
+                <div class="info-line"><span class="info-label">Church & Shuter</span>68 Shuter Street<br><small>416-366-1496</small></div>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+                <div class="info-line"><span class="info-label">King & Jarvis</span>61 Jarvis Street<br><small>416-366-8891</small></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://www.instagram.com/mastcoffeebar?igsh=YXAwdTF2MWNvb3Ro" target="_blank" class="footer-social-link">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <div class="footer-copy">
+            <p>&copy; 2026 Mast Coffee Baku. All rights reserved.</p>
+            <p>Ethically sourced. Expertly crafted.</p>
+        </div>
+    </footer>
+
+    <script>
+        let isOpen = false;
+        function toggleNav() {
+            document.getElementById("myNav").style.height = isOpen ? "0" : "100%";
+            isOpen = !isOpen;
+        }
+        function closeNav() {
+            document.getElementById("myNav").style.height = "0";
+            isOpen = false;
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
