@@ -52,7 +52,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 50px; /* PC üçün padding artırıldı */
             z-index: 1000;
             border-bottom: 1px solid #d9ccb0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -62,6 +62,24 @@
             height: 60px; 
             width: auto;
         }
+
+        /* PC üçün Naviqasiya (Sol tərəfdə) */
+        .pc-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .pc-nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .pc-nav a:hover { color: #888; }
 
         .header-title {
             position: absolute;
@@ -76,7 +94,7 @@
         /* Bodoni Şrifti tətbiqi */
         .header-title span.brand-name {
             font-family: 'Libre Bodoni', 'Bodoni MT', 'Bodoni', serif;
-            font-size: 20px;
+            font-size: 24px; /* PC üçün bir az böyüdüldü */
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -86,17 +104,18 @@
 
         .header-title span.brand-location {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 400;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #666;
             margin-top: 2px;
             text-transform: uppercase;
         }
 
+        /* PC-də hamburger menyu gizlədilir */
         .menu-icon {
+            display: none; 
             cursor: pointer;
-            display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 20px;
@@ -156,28 +175,30 @@
             width: 100%;
             line-height: 0;
             overflow: hidden;
+            max-height: 80vh; /* PC-də şəkil çox böyük olmasın deyə məhdudiyyət */
         }
 
         .hero-container img {
             width: 100%;
-            height: auto; 
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
         /* --- SECTIONS --- */
         section {
-            padding: 100px 20px;
-            max-width: 900px;
+            padding: 120px 50px; /* PC üçün geniş məsafə */
+            max-width: 1200px; /* PC üçün genişlik artırıldı */
             margin: 0 auto;
         }
 
         h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
+            font-size: 38px; /* PC üçün böyüdüldü */
+            margin-bottom: 50px;
             text-align: center;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         p {
@@ -189,15 +210,15 @@
         /* --- OUR COFFEE SEKSİYASI --- */
         .our-coffee-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr 1fr; /* PC-də yan-yana 2 sütun */
+            gap: 80px;
             align-items: center;
         }
 
         /* YENİ ŞÜAR STİLİ */
         .caffeinated-slogan {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 300; 
             font-style: italic;
             color: #333;
@@ -209,9 +230,10 @@
         .our-coffee-img {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9; 
+            aspect-ratio: 4 / 5; /* PC üçün şəkil proporsiyası */
             overflow: hidden;
             border-radius: 4px;
+            box-shadow: 20px 20px 0px #d9ccb0; /* PC üçün kölgə effekti */
         }
 
         .our-coffee-img img {
@@ -222,20 +244,18 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: zoomLoop 12s infinite; 
+            animation: zoomLoop 9s linear infinite; 
         }
 
         .our-coffee-img img:nth-child(1) { animation-delay: 0s; }
-        .our-coffee-img img:nth-child(2) { animation-delay: 4s; }
-        .our-coffee-img img:nth-child(3) { animation-delay: 8s; }
+        .our-coffee-img img:nth-child(2) { animation-delay: 3s; }
+        .our-coffee-img img:nth-child(3) { animation-delay: 6s; }
 
         @keyframes zoomLoop {
             0% { opacity: 0; transform: scale(1); }
-            2% { opacity: 1; }
-            8.33% { opacity: 1; transform: scale(1.04); }
-            25% { opacity: 1; transform: scale(1.06); }
-            33.33% { opacity: 1; transform: scale(1.12); }
-            38.33% { opacity: 0; transform: scale(1.12); }
+            5% { opacity: 1; }
+            28% { opacity: 1; }
+            33.33% { opacity: 0; transform: scale(1.1); }
             100% { opacity: 0; transform: scale(1); }
         }
 
@@ -244,7 +264,7 @@
             background-color: #111;
             color: #fff;
             max-width: 100%;
-            padding: 100px 20px;
+            padding: 120px 50px;
         }
 
         #menu-section h2 {
@@ -253,17 +273,27 @@
             padding-bottom: 20px;
         }
 
+        /* PC-də menyunu yan-yana etmək üçün Grid */
+        .menu-grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .menu-category {
-            max-width: 800px;
-            margin: 0 auto 60px auto;
+            margin-bottom: 40px;
         }
 
         .menu-category h3 {
-            font-size: 24px;
-            color: #fff;
+            font-size: 26px;
+            color: #f2e8cf; /* Başlıq rəngi dəyişdirildi */
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
 
         .menu-list {
@@ -290,25 +320,23 @@
         }
 
         .locations-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* PC-də 2 sütun */
             gap: 40px;
         }
 
         .info-box {
-            flex: 1;
-            min-width: 300px;
             background: #fff;
-            padding: 40px;
+            padding: 60px;
             border: 1px solid #eaeaea;
             box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            text-align: left;
         }
 
         .info-box h3 {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 25px;
             text-transform: uppercase;
             border-bottom: 2px solid #111;
@@ -334,7 +362,7 @@
         /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             background: #f2e8cf; /* FOOTER TÜND KREM */
             border-top: 1px solid #d9ccb0;
             font-size: 14px;
@@ -348,7 +376,7 @@
         .footer-social-link {
             display: inline-block;
             color: #111;
-            font-size: 32px;
+            font-size: 35px;
             margin-bottom: 20px;
             text-decoration: none;
             transition: transform 0.3s, color 0.3s;
@@ -356,13 +384,30 @@
 
         .footer-social-link:hover { color: #E1306C; transform: scale(1.1); }
 
-        .footer-copy { font-size: 13px; color: #999; }
+        .footer-copy { font-size: 14px; color: #999; }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .our-coffee-grid { grid-template-columns: 1fr; }
-            h2 { font-size: 28px; }
-            section { padding: 60px 20px; }
+        /* ======================================================= */
+        /* --- MOBİL ÜÇÜN RESPONSİV DİZAYN (MEDIA QUERIES) --- */
+        /* ======================================================= */
+        @media (max-width: 992px) {
+            header { padding: 0 20px; }
+            .pc-nav { display: none; } /* PC menyusunu mobildə gizlət */
+            .menu-icon { display: flex; } /* Mobil hamburger menyusunu göstər */
+            
+            .header-title span.brand-name { font-size: 20px; }
+            
+            .hero-container { max-height: none; }
+            
+            section { padding: 80px 20px; }
+            h2 { font-size: 32px; }
+            
+            .our-coffee-grid { grid-template-columns: 1fr; gap: 40px; }
+            .our-coffee-img { aspect-ratio: 16 / 9; box-shadow: none; }
+            
+            .menu-grid-container { grid-template-columns: 1fr; gap: 40px; }
+            
+            .locations-container { grid-template-columns: 1fr; }
+            .info-box { text-align: center; padding: 40px; }
         }
     </style>
 </head>
@@ -372,11 +417,23 @@
         <a href="#" class="header-logo-img">
             <img src="https://i.ibb.co/YTPvrrg8/quality-restoration-20260214015716876.jpg" alt="Mast Coffee Logo">
         </a>
+        
+        <nav class="pc-nav">
+            <a href="#our-coffee">Bizim Qəhvə</a>
+            <a href="#menu-section">Menyu</a>
+        </nav>
+
         <div class="header-title">
             <span class="brand-name">MAST</span>
             <span class="brand-name">COFFEE</span>
             <span class="brand-location">Baku</span>
         </div>
+
+        <nav class="pc-nav">
+            <a href="#locations">Məkanlar</a>
+            <a href="https://www.instagram.com/mastcoffeebar?igsh=YXAwdTF2MWNvb3Ro" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </nav>
+
         <div class="menu-icon" onclick="toggleNav()">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -397,11 +454,10 @@
     </div>
 
     <section id="our-coffee" class="fade-in-section">
+        <p class="caffeinated-slogan">Keeping Baku caffeinated since 2017!</p>
+        <h2>Our Coffee</h2>
         <div class="our-coffee-grid">
             <div class="our-coffee-text">
-                <p class="caffeinated-slogan">Keeping Baku caffeinated since 2017!</p>
-                
-                <h2>Our Coffee</h2>
                 <p>At Mast Coffee, we pride ourselves on sourcing only the finest beans from ethical and sustainable roasters. Our blends are carefully crafted from farms in regions renowned for their unique flavors.</p>
                 <p>We partner with roasters who prioritize quality and sustainability, ensuring that each cup not only tastes incredible but also supports local communities.</p>
                 <br>
@@ -419,65 +475,67 @@
     <section id="menu-section" class="fade-in-section">
         <h2>Menu</h2>
 
-        <div class="menu-category">
-            <h3>Espresso</h3>
-            <ul class="menu-list">
-                <li>Drip Coffee</li>
-                <li>Double Espresso</li>
-                <li>Americano</li>
-                <li>Iced Americano</li>
-                <li>Macchiato</li>
-                <li>Cortado</li>
-                <li>Cappuccino</li>
-                <li>Latte</li>
-                <li>Iced Latte</li>
-                <li>Misto</li>
-                <li>Mocha</li>
-                <li>Iced Mocha</li>
-                <li>White Chocolate Macadamia</li>
-                <li>Iced White Chocolate Macadamia</li>
-            </ul>
-        </div>
+        <div class="menu-grid-container">
+            <div class="menu-category">
+                <h3>Espresso</h3>
+                <ul class="menu-list">
+                    <li>Drip Coffee</li>
+                    <li>Double Espresso</li>
+                    <li>Americano</li>
+                    <li>Iced Americano</li>
+                    <li>Macchiato</li>
+                    <li>Cortado</li>
+                    <li>Cappuccino</li>
+                    <li>Latte</li>
+                    <li>Iced Latte</li>
+                    <li>Misto</li>
+                    <li>Mocha</li>
+                    <li>Iced Mocha</li>
+                    <li>White Chocolate Macadamia</li>
+                    <li>Iced White Chocolate Macadamia</li>
+                </ul>
+            </div>
 
-        <div class="menu-category">
-            <h3>Non-Espresso</h3>
-            <ul class="menu-list">
-                <li>Tea (Selection)</li>
-                <li>Chai Latte</li>
-                <li>Iced Chai Latte</li>
-                <li>Matcha Latte</li>
-                <li>Iced Matcha Latte</li>
-                <li>London Fog</li>
-                <li>Iced London Fog</li>
-                <li>Hot Chocolate (Dark or White)</li>
-                <li>Hot Apple Cider (Seasonal)</li>
-            </ul>
-        </div>
+            <div class="menu-category">
+                <h3>Non-Espresso</h3>
+                <ul class="menu-list">
+                    <li>Tea (Selection)</li>
+                    <li>Chai Latte</li>
+                    <li>Iced Chai Latte</li>
+                    <li>Matcha Latte</li>
+                    <li>Iced Matcha Latte</li>
+                    <li>London Fog</li>
+                    <li>Iced London Fog</li>
+                    <li>Hot Chocolate (Dark or White)</li>
+                    <li>Hot Apple Cider (Seasonal)</li>
+                </ul>
+            </div>
 
-        <div class="menu-category">
-            <h3>Bakery</h3>
-            <ul class="menu-list">
-                <li>Butter Croissant</li>
-                <li>Almond Croissant</li>
-                <li>Seasonal Croissant</li>
-                <li>Blueberry Muffin</li>
-                <li>Vegan Banana Muffin</li>
-                <li>Vegan Pumpkin Loaf</li>
-                <li>Cranberry Scone</li>
-                <li>White Cheddar Scone</li>
-                <li>Blueberry Scone</li>
-                <li>Flourless Brownie</li>
-                <li>Carrot Cake</li>
-                <li>Nanaimo Bar</li>
-                <li>Sea Salt Chocolate Cookie</li>
-            </ul>
-        </div>
+            <div class="menu-category">
+                <h3>Bakery</h3>
+                <ul class="menu-list">
+                    <li>Butter Croissant</li>
+                    <li>Almond Croissant</li>
+                    <li>Seasonal Croissant</li>
+                    <li>Blueberry Muffin</li>
+                    <li>Vegan Banana Muffin</li>
+                    <li>Vegan Pumpkin Loaf</li>
+                    <li>Cranberry Scone</li>
+                    <li>White Cheddar Scone</li>
+                    <li>Blueberry Scone</li>
+                    <li>Flourless Brownie</li>
+                    <li>Carrot Cake</li>
+                    <li>Nanaimo Bar</li>
+                    <li>Sea Salt Chocolate Cookie</li>
+                </ul>
+            </div>
 
-        <div class="menu-category">
-            <h3>Breakfast</h3>
-            <ul class="menu-list">
-                <li>Steel Cut Oats</li>
-            </ul>
+            <div class="menu-category">
+                <h3>Breakfast</h3>
+                <ul class="menu-list">
+                    <li>Steel Cut Oats</li>
+                </ul>
+            </div>
         </div>
     </section>
 
