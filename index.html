@@ -8,7 +8,7 @@
     <style>
         /* --- GOOGLE FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
 
         /* --- RESET & BASIC STYLES --- */
         * {
@@ -21,7 +21,7 @@
         body {
             color: #111;
             line-height: 1.6;
-            background-color: #f2e8cf;
+            background-color: #e6ddc5;
             padding-top: 80px;
             overflow-x: hidden;
         }
@@ -34,7 +34,7 @@
         .btn-main {
             display: inline-block;
             background-color: #111;
-            color: #f2e8cf;
+            color: #e6ddc5;
             padding: 14px 32px;
             text-decoration: none;
             font-size: 14px;
@@ -56,25 +56,24 @@
         }
 
         .btn-main.light {
-            background-color: #f2e8cf;
+            background-color: #b3a075;
             color: #111;
-            border-color: #f2e8cf;
+            border-color: #b3a075;
         }
 
         .btn-main.light:hover {
-            background-color: transparent;
-            color: #f2e8cf;
-            border-color: #f2e8cf;
+            background-color: #9f8c60;
+            border-color: #9f8c60;
         }
         
         .btn-main.dark-mode {
-             background-color: #f2e8cf;
+             background-color: #e6ddc5;
              color: #111;
-             border-color: #f2e8cf;
+             border-color: #e6ddc5;
         }
         .btn-main.dark-mode:hover {
              background-color: transparent;
-             color: #f2e8cf;
+             color: #e6ddc5;
         }
 
 
@@ -113,7 +112,7 @@
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: #f2e8cf;
+            background-color: #e6ddc5;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -154,6 +153,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            padding-top: 12px;
         }
 
         .header-title span.brand-name {
@@ -166,12 +166,13 @@
             line-height: 1.1;
         }
 
+        /* DÜZƏLİŞ: Toronto yazısı yuxarı çəkildi */
         .header-title span.brand-location {
             font-size: 11px;
             font-weight: 400;
             letter-spacing: 4px;
             color: #666;
-            margin-top: 2px;
+            margin-top: -5px; /* Mənfi dəyər verərək yuxarı qaldırdıq */
             text-transform: uppercase;
         }
 
@@ -236,11 +237,13 @@
         .hero-container {
             width: 100%;
             position: relative;
-            height: 85vh;
             overflow: hidden;
-            background-image: url('https://i.ibb.co/ds557fyM/1000055488-1.jpg');
-            background-size: cover;
-            background-position: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Vinyetka Effekti */
@@ -248,47 +251,52 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0) 65%, rgba(0,0,0,0.9) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5) 100%);
             z-index: 1;
             pointer-events: none;
         }
 
         .hero-content {
-            position: relative;
+            position: absolute;
+            top: 20%;
+            left: 5%;
             z-index: 5;
-            height: 100%;
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* View our menu 30% hündürlükdə */
-        .menu-btn-wrapper {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Brewed freshly şəklin tam dibində */
-        .hero-content h1 {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             color: #fff;
-            font-size: 38px;
-            width: 100%;
+        }
+
+        .hero-content h1 {
+            color: #fff;
+            font-size: 48px;
             text-transform: uppercase;
-            font-family: 'Libre Bodoni', serif;
-            text-align: center;
-            
-            /* Font oxunaqlılığı */
-            text-shadow: 3px 3px 6px rgba(0,0,0,1), 0 0 25px rgba(0,0,0,0.8);
-            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        /* YENI DÜYMƏ STİLİ */
+        .btn-hero {
+            display: inline-block;
+            background-color: transparent;
+            color: #fff;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            line-height: 1.1;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-hero:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-color: #fff;
         }
 
         /* --- SECTIONS GLOBAL --- */
@@ -428,7 +436,7 @@
 
         .menu-category h3 {
             font-size: 26px;
-            color: #f2e8cf;
+            color: #e6ddc5; 
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -473,7 +481,7 @@
         }
         
         #locations h2 {
-             color: #f2e8cf;
+             color: #e6ddc5;
              border-bottom: 1px solid #333;
              padding-bottom: 20px;
         }
@@ -510,7 +518,7 @@
             font-size: 28px;
             margin-bottom: 20px;
             font-family: 'Libre Bodoni', serif;
-            color: #f2e8cf;
+            color: #e6ddc5;
         }
 
         .loc-details {
@@ -554,7 +562,7 @@
         footer {
             text-align: center;
             padding: 80px 20px;
-            background: #f2e8cf;
+            background: #e6ddc5;
             border-top: 1px solid #d9ccb0;
             font-size: 14px;
             color: #666;
@@ -582,7 +590,6 @@
         }
         .footer-social-link.phone-link:hover { color: #d4a373; }
 
-        /* Footer Copy - Kiçik və Sıx */
         .footer-copy p {
             margin: 0;
             font-size: 12px;
@@ -596,8 +603,9 @@
             .pc-nav { display: none; }
             .menu-icon { display: flex; }
             
-            .hero-container { height: 60vh; }
+            .hero-container { height: auto; }
             .hero-content h1 { font-size: 28px; } 
+            .hero-content { top: 10%; left: 5%; }
             
             section { padding: 80px 20px; }
             #menu-section, #locations { padding: 60px 30px; }
@@ -660,11 +668,10 @@
     </div>
 
     <div class="hero-container">
+        <img src="https://i.ibb.co/Fq4P1gfS/1771195011940.png" alt="Hero Image" class="hero-image">
         <div class="hero-content fade-in-section">
-            <div class="menu-btn-wrapper">
-                <a href="#menu-section" class="btn-main light">View Our Menu</a>
-            </div>
             <h1>Freshly Brewed.<br>Locally Loved.</h1>
+            <a href="#menu-section" class="btn-hero">View Our Menu</a>
         </div>
     </div>
 
@@ -867,3 +874,4 @@
     </script>
 </body>
 </html>
+        
